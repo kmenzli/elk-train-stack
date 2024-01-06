@@ -1,0 +1,9 @@
+server:
+  name: "elk"
+  host: "0.0.0.0"
+  port: 5601 # We will be proxying to Kibana from behind an NGINX web server, so it is not necessary to open up the Kibana port to the host.
+  basePath: /kibana
+  rewriteBasePath: true # Set this to “true” if you utilize server.basePath. Else, remove entirely or set to “false”
+elasticsearch.hosts: ["http://elasticsearch01:9200","http://elasticsearch02:9200"]
+xpack.monitoring.ui.container.elasticsearch.enabled: true # Since we are running our Elasticsearch cluster inside of Docker containers, we will set this key to “true”.
+csp.strict: true # “csp” stands for “Content Security Policy”. The default is “true” and should be “true” for most deployments.
